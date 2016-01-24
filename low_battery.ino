@@ -21,8 +21,12 @@ void turnOffLed() {
   digitalWrite(ledPin, LOW);
 }
 
-void blinkOnce() {
+void turnOnLed() {
   digitalWrite(ledPin, HIGH);
+}
+
+void blinkOnce() {
+  turnOnLed();
   timer.setTimeout(50, turnOffLed);
 }
 
@@ -33,13 +37,12 @@ void startBlinking() {
 void stopBlinking() {
   timer.deleteTimer(intervalId);
   intervalId = -1;
-  // make sure LED is off
-  digitalWrite(ledPin, LOW);
+  turnOffLed();
 }
 
 void setup() {
   pinMode(ledPin, OUTPUT);
-  digitalWrite(ledPin, LOW);
+  turnOffLed();
 }
 
 void loop() {
